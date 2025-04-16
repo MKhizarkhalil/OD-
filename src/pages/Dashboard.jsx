@@ -7,6 +7,7 @@ import UtilizationGraph from "../components/UtilizationGraph";
 import StatCard from "../components/StatCard";
 import Analysis from "../components/Analysis";
 import SimulationTable from "../components/SimulationTable";
+import GanttChart from "../components/GanttChart";
 
 const Dashboard = () => {
   return (
@@ -21,9 +22,11 @@ const Dashboard = () => {
         <ServiceTimeGraph />
         <WaitTimeGraph />
         <ServerStateGraph />
+        <GanttChart />
 
       </div>
       <SimulationTable />
+
     </div>
   );
 };

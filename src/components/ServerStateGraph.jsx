@@ -6,9 +6,9 @@ const ServerStateGraph = () => {
     const { metrics } = useSimulator();
     if (!metrics) return null;
 
-    // Convert server state time data from seconds to minutes
+    // Prepare the timeline data for server states (already in minutes)
     const timelineData = metrics.serverStates.map((state, i) => ({
-        time: (state.start / 60).toFixed(2),  // Convert time to minutes
+        time: state.start.toFixed(2),  // No conversion needed since the times are in minutes
         state: state.state === "busy" ? 1 : 0,
     }));
 

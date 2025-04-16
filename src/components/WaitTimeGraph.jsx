@@ -18,7 +18,7 @@ const WaitTimeGraph = () => {
     return (
         <div className="backdrop-blur-md bg-white/10 text-white rounded-2xl shadow-xl p-6">
             <h3 className="font-bold text-lg mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600">
-                ⏱ Wait Time
+                ⏱ Wait Time (in minutes)
             </h3>
             <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={metrics.history}>
@@ -27,7 +27,7 @@ const WaitTimeGraph = () => {
                         <Label value="Customer ID" position="insideBottom" offset={-5} fill="#00BFAE" />
                     </XAxis>
                     <YAxis stroke="#00BFAE">
-                        <Label value="Wait Time (min)" angle={-90} position="insideLeft" fill="#00BFAE" />
+                        <Label value="Wait Time (minutes)" angle={-90} position="insideLeft" fill="#00BFAE" />
                     </YAxis>
                     <Tooltip
                         contentStyle={{
@@ -37,6 +37,7 @@ const WaitTimeGraph = () => {
                         }}
                         labelStyle={{ color: "#fff" }}
                         itemStyle={{ color: "#fff" }}
+                        formatter={(value, name) => [`${value.toFixed(2)} min`, name]}
                     />
                     <Line
                         type="monotone"

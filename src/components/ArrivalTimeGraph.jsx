@@ -6,14 +6,14 @@ const ArrivalTimeGraph = () => {
     const { metrics } = useSimulator();
     if (!metrics) return null;
 
-    // Convert arrival time from seconds to minutes (if necessary)
-    const dataWithConvertedTimes = metrics.history.map(item => ({
+    // Use the arrivalTime directly without converting it to minutes
+    const dataWithArrivalTimes = metrics.history.map(item => ({
         ...item,
-        arrivalTime: (item.arrivalTime / 60).toFixed(2), // Convert to minutes
+        arrivalTime: item.arrivalTime,  // No conversion needed, just use the existing data
     }));
 
     return (
-        <div className="bg-white p-4 rounded shadow backdrop-blur-md bg-white/20 text-white">
+        <div className="p-4 rounded shadow backdrop-blur-md bg-white/20 text-white">
             <h3 className="font-bold text-lg mb-2">📍 Customer vs Arrival Time</h3>
             <ResponsiveContainer width="100%" height={250}>
                 <ScatterChart>
@@ -29,7 +29,7 @@ const ArrivalTimeGraph = () => {
                         labelStyle={{ color: "#fff" }}
                         itemStyle={{ color: "#fff" }}
                     />
-                    <Scatter data={dataWithConvertedTimes} fill="#D946EF" />
+                    <Scatter data={dataWithArrivalTimes} fill="#D946EF" />
                 </ScatterChart>
             </ResponsiveContainer>
         </div>
