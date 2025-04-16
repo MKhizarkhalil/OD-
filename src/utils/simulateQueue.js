@@ -20,6 +20,9 @@ export function simulateQueue(lambda, mu, sigma, customerCount = 100) {
     return Math.max(0.01, mean + z * std);
   }
 
+  let minArrivalTime = Infinity;
+  let maxEndTime = 0;
+
   for (let i = 0; i < customerCount; i++) {
     const interArrival = getRandomExponential(lambda);
     nextArrival += interArrival;
@@ -49,7 +52,14 @@ export function simulateQueue(lambda, mu, sigma, customerCount = 100) {
       startTime: +startTime.toFixed(2),
       endTime: +endTime.toFixed(2),
     });
+
+    // Track the minimum arrival time and maximum end time for simulation duration
+    minArrivalTime = Math.min(minArrivalTime, arrivalTime);
+    maxEndTime = Math.max(maxEndTime, endTime);
   }
+
+  // Calculate total simulation duration (in minutes)
+  const simulationDuration = maxEndTime - minArrivalTime;
 
   return {
     history,
@@ -60,5 +70,6 @@ export function simulateQueue(lambda, mu, sigma, customerCount = 100) {
     busyTime,
     idleTime,
     startTime: 0,
+    simulationDuration, // Include the simulation duration here
   };
 }
