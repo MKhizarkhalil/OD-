@@ -22,9 +22,11 @@ const Dashboard = () => {
         <ServiceTimeGraph />
         <WaitTimeGraph />
         <ServerStateGraph />
-        <GanttChart />
+
 
       </div>
+      <GanttChart />
+
       <SimulationTable />
 
     </div>
